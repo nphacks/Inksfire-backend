@@ -1,19 +1,14 @@
 from typing import List, Optional
 from pydantic import BaseModel
-from google.generativeai import GenerativeModel, configure
+from google import genai
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
-configure(api_key=os.getenv("GOOGLE_API"))
+client = genai.Client(api_key=os.getenv("GOOGLE_API"))
 
 class PromptList(BaseModel):
     prompts: List[str]
-
-model = GenerativeModel(
-    model_name="gemini-2.5-pro",  # Use 1.5 for structured output
-    tools=[PromptList],
-)
 
 def generate_story_prompt(idea: str, tags: str, genre: Optional[str] = None):
     if genre == '':
@@ -34,5 +29,13 @@ def generate_story_prompt(idea: str, tags: str, genre: Optional[str] = None):
             "Return as: PromptList(prompts=['...', '...', '...'])"
         )
 
-    response = model.generate_content(prompt)
-    return response.candidates[0].content.parts[0].function_call.args["prompts"]
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=prompt,
+        config={
+            "response_mime_type": "application/json",
+            "response_schema": PromptList,
+        },
+    )
+
+    return response.parsed
