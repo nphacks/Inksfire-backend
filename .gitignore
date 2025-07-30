@@ -1,0 +1,6 @@
+.env
+firebase-key.json
+genai-key.json
+test.py
+entity-search.py
+test-qloo
