@@ -4,5 +4,4 @@ python-dotenv
 firebase-admin
 google-genai
 vertexai
-google-generativeai
 rapidfuzz
