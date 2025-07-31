@@ -15,7 +15,7 @@ class TagsSearchQuery(BaseModel):
 class EntitySearchParamater(BaseModel):
     types: Optional[List[str]] = None
     exists: Optional[List[str]] = None
-    popularity: Optional[int] = None
+    popularity: Optional[str] = None
     page: Optional[int] = None
     take: Optional[int] = None
     sort_by: Optional[str] = None

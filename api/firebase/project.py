@@ -19,7 +19,8 @@ def get_project_db(project_id: str):
     if not project_doc.get().exists:
         raise ValueError("Project not found")
 
-    return project_doc
+    return project_doc.get().to_dict()
+
 
 def get_project_information(project_id: str, fields: list):
     project_doc = get_project_db(project_id)
@@ -43,7 +44,7 @@ def create_project_db(project_id: str):
             "project_settings": project_settings
         })
     
-    return project_doc
+    return project_doc.get().to_dict()
 
 def update_project_data_db(project_id: str, data: dict):
     projects_ref = db.collection("projects")
@@ -54,7 +55,7 @@ def update_project_data_db(project_id: str, data: dict):
 
     project_doc.update(data)
 
-    return project_doc
+    return project_doc.get().to_dict()
 
 def update_project_setting(project_id: str, setting_key: str, setting_value: str):
     projects_ref = db.collection("projects")
@@ -72,4 +73,4 @@ def update_project_setting(project_id: str, setting_key: str, setting_value: str
         f"project_settings.{setting_key}": setting_value
     })
     
-    return project_doc
+    return project_doc.get().to_dict()

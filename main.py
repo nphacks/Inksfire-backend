@@ -5,7 +5,7 @@ from models.tags import TagsSearchQuery
 from routes.project_setup import router as project_setup_router
 from routes.project import router as project_router
 from routes.story import router as story_router
-from routes.qloo import router as qloo_router
+from routes.qloo import router as qloo_router, movie_information_search, actor_information_search
 from routes.llm import router as llm_generate_router, suggest_tags, generate_ideas
 from dotenv import load_dotenv
 
@@ -49,4 +49,7 @@ async def root():
 
     # Test call to suggest_tags
     # await generate_ideas()  # make sure suggest_tags is async 
+
+    # await movie_information_search('movies about space')
+    # await actor_information_search('korean actors above 25 and who can sing')
     return {"status_code": 200, "message": "Connected to Backend!"}

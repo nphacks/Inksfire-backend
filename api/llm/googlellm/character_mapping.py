@@ -39,6 +39,7 @@ def generate_character_mapping(writing: str):
         "- Add new relationships only if meaningful relationship change occur. Write in 1-3 words.\n\n"
         f"Writing:\n{writing}\n\n"
         "Return ONLY the updated character map in this exact JSON format:\n"
+        "Donot assume names, if name not given write 'Name not given'"
         "{'characters': [...], 'relationships': [...]}"
     )
 

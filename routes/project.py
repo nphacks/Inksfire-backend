@@ -29,12 +29,9 @@ async def get_all_projects(request: Request):
 @router.get("/get-project")
 async def get_project_data(project_id: str):
     try:
-        project_doc = get_project_db(project_id)
-        if not project_doc.get().exists:
-            raise HTTPException(status_code=404, detail="Project not found")
-            
-        project_data = project_doc.get().to_dict()
-        
+        print(project_id)
+        project_data = get_project_db(project_id)
+        print(project_data)
         return {
             "status_code": 200,
             "message": "Project data fetched!",
