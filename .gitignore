@@ -1,5 +1,6 @@
 .env
 firebase-key.json
+firebase-v2-key.json
 genai-key.json
 test.py
 entity-search.py

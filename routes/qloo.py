@@ -71,12 +71,14 @@ async def movie_information_search(movie_search_Str: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to fetch movie information: {str(e)}")
     
-@router.get("/get-movie-info")
+@router.get("/get-movie-compare-info")
 async def movie_compare_information(entity_1: str, entity_2: str):
     try:
+        print('Reaching')
         url = compare_movie_search([entity_1, entity_2])
+        print(url)
         response = qloo_call(url)
-
+        print(response)
         return {
             "status_code": 200,
             "message": "Movie compare data found!",
@@ -84,7 +86,7 @@ async def movie_compare_information(entity_1: str, entity_2: str):
         }
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to fetch tag demographics: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch compare results: {str(e)}")
     
 @router.get("/get-actor-info")
 async def actor_information_search(movie_search_Str: str):
@@ -102,7 +104,10 @@ async def actor_information_search(movie_search_Str: str):
 
         for url in actor_id_urls:
             response = qloo_call(url)
-            actors.extend(response["results"][0])
+            print(response)
+            actors.append(response["results"][0])
+
+        print(actors)
 
         return {
             "status_code": 200,

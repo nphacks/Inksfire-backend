@@ -6,6 +6,6 @@ def compare_movie_search(entity_ids: List[str]):
     """
     Get parameters and create API links
     """
-    url = f'insights/compare?a.signal.interests.entities={entity_ids[0]}&b.signal.interests.entities={entity_ids[1]}&model=descriptive&page=1&take=20'
+    url = f'v2/insights/compare?a.signal.interests.entities={entity_ids[0]}&b.signal.interests.entities={entity_ids[1]}&model=descriptive&page=1&take=20'
 
     return url
